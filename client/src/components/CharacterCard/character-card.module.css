@@ -1,0 +1,29 @@
+.container {
+    background: var(--secondary-color);
+    margin: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    width: 300px;
+    cursor: pointer;
+}
+
+.container:hover {
+    scale: 105%;
+    transition: scale 100ms ease-in-out;
+}
+
+.text {
+    background: rgb(32,36,44);
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin: 10px 0;
+        width: 100%;
+    }
+}

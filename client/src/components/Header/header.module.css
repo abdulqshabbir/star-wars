@@ -17,7 +17,7 @@
 .logoContainer{
     width: var(--left-child-size);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 } 
 
@@ -47,7 +47,7 @@
     outline: none;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
     .container {
         height: calc(2* var(--container-height));
     }

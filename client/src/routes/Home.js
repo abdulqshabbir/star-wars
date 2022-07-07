@@ -1,10 +1,12 @@
 import React from "react"
+import Container from "../components/Container"
+import Header from "../components/Header"
 
 export default function Home() {
 
     return(
-        <div>
-            <p>This will become the homepage.</p>
-        </div>
+        <Container>
+            <Header />
+        </Container>
     )
 }

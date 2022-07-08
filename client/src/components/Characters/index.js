@@ -13,7 +13,17 @@ export default function StarWarsCharacters() {
         fetch("https://swapi.dev/api/people")
         .then(res => res.json())
         .then(data => {
-            let starWarsCharacters = data.results.map(result => result.name)
+            /* 
+                Note: The SWAPI API does not have an id field for each character.
+                it implicitly assigns an id to each character by the rule 
+                id = idx + 1, where idx is the zero-indexed location of the character.
+                
+                e.g.
+                results = [{"name": "Luke Skywalker"}, {"name": "C-3PO"}]
+                So Luke has an id of 1 and C-3PO has an id of 2. 
+            */
+
+            let starWarsCharacters = data.results.map((result, idx) => ({name: result.name, id: idx + 1}))
             setCharacters(starWarsCharacters)
         })
         .catch(() => {
@@ -34,7 +44,7 @@ export default function StarWarsCharacters() {
 
     return (
         <div className={container}>
-            {characters.map(c => <CharacterCard name={c} />)}
+            {characters.map(c => <CharacterCard name={c.name} id={c.id} key={c.id} />)}
         </div>
     )
 }

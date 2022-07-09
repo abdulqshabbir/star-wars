@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }))
 
 const BASE_URL = "https://swapi.dev/api/"
 
+// GET route /planets/:id
 app.get("/api/planets/:id", (req, res) => {
     const planetId = req.params.id
 
@@ -32,7 +33,32 @@ app.get("/api/planets/:id", (req, res) => {
             })
         })
         .catch(e => {
-            return res.status(500).json({error: "Internal Server Error."})
+            return res.status(500).json({
+                error: "Internal Server Error."
+            })
+        })
+})
+
+// GET route /films/:id
+app.get("/api/films/:id", (req, res) => {
+    const filmId = req.params.id
+
+    fetch(`${BASE_URL}/films/${filmId}`)
+        .then(res => res.json())
+        .then(result => {
+            if (!("title" in result)) {
+                return res.status(400).json({
+                    error: "Please provide a valid film id."
+                })
+            }
+            return res.status(200).json({
+                title: result.title
+            })
+        })
+        .catch(e => {
+            return res.status(500).json({
+                error: "Internal Server Error."
+            })
         })
 })
 

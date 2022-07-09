@@ -41,14 +41,14 @@ TODO:
     - Note: `planetName` will be provided as a URL by SWAPI so another request needs to be made to `/planets/id` to find the string name of planet
     - Note `appearedIn` will be provided as a list of URLs by SWAPI so for each URL we need to make a request to `/films/id` to get the corresponding film name
 
-- [ ] Create GET route for `/planets/id`
+- [X] Create GET route for `/planets/id`
     - example response when `id === 1`
     ```
     {
         name: Tatooine
     }
     ```
-- [ ] Create GET route for `/films/id`
+- [X] Create GET route for `/films/id`
     - example response when `id === 1`:
     ```
     {

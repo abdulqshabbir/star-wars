@@ -2,6 +2,8 @@
 import express from 'express'
 import cors from 'cors'
 import fetch from 'node-fetch'
+import getResource from './utils/getResource.js'
+import getResources from './utils/getResources.js'
 
 const app = express()
 
@@ -14,7 +16,7 @@ app.use(express.json())
 // parse incoming requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
 
-const BASE_URL = "https://swapi.dev/api/"
+export const BASE_URL = "https://swapi.dev/api/"
 
 // GET route /planets/:id
 app.get("/api/planets/:id", (req, res) => {
@@ -33,6 +35,7 @@ app.get("/api/planets/:id", (req, res) => {
             })
         })
         .catch(e => {
+            console.log(e)
             return res.status(500).json({
                 error: "Internal Server Error."
             })
@@ -56,6 +59,35 @@ app.get("/api/films/:id", (req, res) => {
             })
         })
         .catch(e => {
+            console.log(e)
+            return res.status(500).json({
+                error: "Internal Server Error."
+            })
+        })
+})
+
+// GET route for /people/:id
+app.get("/api/people/:id", (req, res) => {
+    const personId = req.params.id
+
+    fetch(`${BASE_URL}/people/${personId}`)
+        .then(res => res.json())
+        .then(async (result) => {
+            if (!("name" in result)) {
+                return res.status(400).json({
+                    error: "Please provide a valid person id."
+                })
+            }
+            return res.status(200).json({
+                name: result.name,
+                gender: result.gender,
+                eyeColor: result.eye_color,
+                homeworld: await getResource(result.homeworld, ["name"]),
+                appearedIn: await getResources(result.films, ["title", "episode_id"]),
+            })
+        })
+        .catch(e => {
+            console.log(e)
             return res.status(500).json({
                 error: "Internal Server Error."
             })

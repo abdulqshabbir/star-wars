@@ -5,7 +5,7 @@ TODO:
     - `options` object should allow for searching `people` by `page` and `name`
         - e.g. `/people/` with `req.body = {page: 2}` should return all people on page 2
         - e.g. `/people/` with `req.body = {name: r2-d2}` should return all people that match the `name` search string
-    - example response:
+    - example response when request made to `/people`
     ```
     {
         count: 82,
@@ -25,7 +25,7 @@ TODO:
     }
     ```
 
-- [ ] Create GET route for `/people/id`
+- [X] Create GET route for `/people/id`
     - Should return a JSON response of the person with corresponding `id`
     - example response:
     ```

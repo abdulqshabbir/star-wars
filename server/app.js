@@ -94,4 +94,27 @@ app.get("/api/people/:id", (req, res) => {
         })
 })
 
+// GET route for /people
+app.get("/api/people", (req, res) => {
+    let { name, page: pageNumber } = req.body
+    pageNumber = pageNumber ?? 1
+    name = name === undefined ? "" : `search=${name}`
+
+    fetch(`${BASE_URL}/people?${name}&page=${pageNumber}`)
+        .then(res => res.json())
+        .then(data => {
+            if (!("results" in data)) {
+                return res.status(400).json({ error: "No search results matching your criterion."})
+            }
+            return res.status(200).json(data)
+        })
+        .catch(e => {
+            console.log(e)
+            return res.status(500).json({
+                error: "Internal Server Error."
+            })
+        })
+
+})
+
 export default app

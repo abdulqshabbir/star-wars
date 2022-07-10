@@ -16,7 +16,7 @@ app.use(express.json())
 // parse incoming requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
 
-export const BASE_URL = "https://swapi.dev/api/"
+export const BASE_URL = "https://swapi.dev/api"
 
 // GET route /planets/:id
 app.get("/api/planets/:id", (req, res) => {
@@ -66,8 +66,8 @@ app.get("/api/films/:id", (req, res) => {
         })
 })
 
-// GET route for /people/:id
-app.get("/api/people/:id", (req, res) => {
+//GET route for /person/:id
+app.get("/api/person/:id", (req, res) => {
     const personId = req.params.id
 
     fetch(`${BASE_URL}/people/${personId}`)
@@ -95,12 +95,12 @@ app.get("/api/people/:id", (req, res) => {
 })
 
 // GET route for /people
-app.get("/api/people", (req, res) => {
-    let { name, page: pageNumber } = req.body
-    pageNumber = pageNumber ?? 1
-    name = name === undefined ? "" : `search=${name}`
+app.get("/api/people/:searchParams", (req, res) => {
+    const params = new URLSearchParams(req.params.searchParams)
+    const pageNumber = params.get("pageNumber")
+    const name = params.get("name")
 
-    fetch(`${BASE_URL}/people?${name}&page=${pageNumber}`)
+    fetch(`${BASE_URL}/people?search=${name}&page=${pageNumber}`)
         .then(res => res.json())
         .then(data => {
             if (!("results" in data)) {

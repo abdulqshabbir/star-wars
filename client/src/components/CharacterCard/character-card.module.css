@@ -23,7 +23,6 @@
 
 @media (max-width: 600px) {
     .container {
-        margin: 10px 0;
-        width: 100%;
+        flex-direction: column;
     }
 }

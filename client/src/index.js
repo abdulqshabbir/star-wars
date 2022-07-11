@@ -7,7 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import HomePage from "./routes/Home"
+import HomePage from "./routes/HomePage"
 import CharacterPage from "./routes/CharacterPage"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

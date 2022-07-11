@@ -4,7 +4,7 @@ const { container, text } = styles
 
 export default function CharacterCard({ name, id }) {
     return (
-        <Link to={`/characters/${id}`} style={{textDecoration: "none"}}>
+        <Link to={`/characters/${name}`} style={{textDecoration: "none"}}>
             <div className={container}>
                 <p className={text}>{name}</p>
             </div>

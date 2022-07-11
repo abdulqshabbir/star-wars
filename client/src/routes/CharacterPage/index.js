@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Container from "../../components/Container"
 import Header from "../../components/Header"
+import getPerson from "../../services/getPerson"
+
 import styles from "./character-page.module.css"
-const { header, text } = styles
+const { header, text, listItem } = styles
 
 export default function CharacterPage() {
     const params = useParams()
@@ -13,26 +15,19 @@ export default function CharacterPage() {
 
     useEffect(() => {
         setLoading(true)
-        fetch(`https://swapi.dev/api/people/${params.id}`)
-        .then(res => res.json())
-        .then(data => {
-            let currentCharacter = {
-                name: data.name,
-                gender: data.gender,
-                birthYear: data.birth_year,
-                eyeColor: data.eye_color,
-                homeworldURL: data.homeworld,
-                filmsURL: data.films
-            }
-            setCharacter(currentCharacter) 
-        })
-        .catch(() => {
-            setError("Sorry something went wrong when trying to fetch this Star Wars character from our servers. Try refreshing your page.")
-        })
-        .finally(() => {
-            setLoading(false)
-        })
-    }, [params.id])
+        getPerson(params.name)
+            .then(data => {
+                setCharacter(data)
+            })
+            .catch(e => {
+                setError("Sorry something went wrong. Please try refreshing your page.")
+                console.log(e)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
+
+    }, [params.name])
 
     if (character === null || loading) {
         return "Please wait as we load your Star Wars character..."
@@ -48,8 +43,11 @@ export default function CharacterPage() {
                         <p className={text}>Gender: {character.gender}</p>
                         <p className={text}>Birth Year: {character.birthYear}</p>
                         <p className={text}>Eye Color: {character.eyeColor}</p>
-                        <p className={text}>Homeworld: {character.homeworldURL}</p>
-                        <p className={text}>Appeared in: {character.filmsURL}</p>
+                        <p className={text}>Homeworld: {character.homeworld.name}</p>
+                        <p className={text}>{character.name} Appeared in the following films:</p>
+                        <ul>
+                            {character.films.map((film, idx) => <li className={listItem} key={idx}>{film.title}</li>)}
+                        </ul>
                     </div>
                 </Container>
             </React.Fragment>

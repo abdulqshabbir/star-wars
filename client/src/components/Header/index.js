@@ -1,6 +1,7 @@
 import { GiMagicPortal } from "react-icons/gi"
 import { BsSearch } from "react-icons/bs"
 import { useEffect, useRef, useState } from "react"
+import { Link } from "react-router-dom"
 
 import styles from "./header.module.css"
 const { container, logoContainer, logoText, searchBarContainer, searchText } = styles
@@ -13,10 +14,10 @@ export default function Header() {
 
     return (
         <header className={container}>
-            <div className={logoContainer}>
+            <Link to="/" style={{textDecoration: "none"}} className={logoContainer}>
                 <GiMagicPortal size="35px" />
                 <span className={logoText}>Star Wars Portal</span>
-            </div>
+            </Link>
             <div className={searchBarContainer}>
                 <BsSearch size="25px"/>
                 <input

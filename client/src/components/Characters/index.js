@@ -1,28 +1,31 @@
 import { useEffect, useState } from "react"
 import CharacterCard from "../CharacterCard"
 import getPeople from "../../services/getPeople"
+import { usePeople } from "../../context/People"
 
 import styles from "./characters.module.css"
 const { container } = styles
 
 export default function StarWarsCharacters() {
-    const [starWarsData, setStarWarsData] = useState([])
+    const [people, setPeople] = usePeople()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
 
     useEffect(() => {
         getPeople()
             .then(data => {
-                setStarWarsData(data)
-                setLoading(false)
+                setPeople(data)
             })
             .catch(e => {
                 setError("Sorry we could not load the data. Please try refreshing your page.")
                 console.log(e)
             })
+            .finally(() => {
+                setLoading(false)
+            })
     }, [])
 
-    if (loading | !starWarsData) {
+    if (loading || people === null) {
         return "Loading data... hang on a sec..."
     }
 
@@ -30,11 +33,15 @@ export default function StarWarsCharacters() {
         return <p>{error}</p>
     }
 
+    else if (people.count === 0) {
+        return "Sorry your search does not match any star wars characters."
+    }
+
     return (
         <div className={container}>
-            {starWarsData.results.map((starWarsCharacter, idx) => 
+            {people.results.map((person, idx) => 
                 <CharacterCard
-                    name={starWarsCharacter.name}
+                    name={person.name}
                     key={idx}
                 />)
             }

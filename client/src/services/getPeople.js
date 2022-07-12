@@ -10,6 +10,7 @@ export default function getPeople(name, pageNumber) {
             return data
         })
         .catch(e => {
-            return null
+            console.log(e)
+            throw new Error("Something went wrong while we were grabbing people from the Star Wars films.")
         })
 }

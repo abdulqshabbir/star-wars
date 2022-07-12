@@ -2,6 +2,8 @@ import { GiMagicPortal } from "react-icons/gi"
 import { BsSearch } from "react-icons/bs"
 import React, { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
+import { usePeople } from "../../context/People"
+import getPeople from "../../services/getPeople"
 
 import styles from "./header.module.css"
 const { container, logoContainer, logoText, searchBarContainer, searchText, searchButton } = styles
@@ -23,8 +25,21 @@ export default function Header() {
 
 function SearchBar() {
     const [searchString, setSearchString] = useState("")
+    const [people, setPeople] = usePeople()
     const inputRef = useRef()
     useEffect(() => inputRef.current.focus(), [])
+
+    function findMatchingPeople() {
+        getPeople(searchString)
+            .then(data => {
+                setPeople(data)
+                console.log(data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }
+
     return(
         <React.Fragment>
             <input
@@ -34,7 +49,12 @@ function SearchBar() {
                 value={searchString}
                 onChange={e => setSearchString(e.target.value)}
             />
-            <button className={searchButton}>Submit</button>
+            <button
+                className={searchButton}
+                onClick={findMatchingPeople}
+            >
+                Submit
+            </button>
         </React.Fragment>
     )
 }

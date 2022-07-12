@@ -95,6 +95,7 @@ app.get("/api/person/:name", (req, res) => {
                 name: person.name,
                 gender: person.gender,
                 eyeColor: person.eye_color,
+                birthYear: person.birth_year,
                 homeworld: await getResource(person.homeworld, ["name"]),
                 films: await getResources(person.films, ["title", "episode_id"]),
             })

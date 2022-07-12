@@ -9,6 +9,7 @@ export function usePeople() {
 
 export default function PeopleProvider({ children }) {
     const [people, setPeople] = useState(null)
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
         getPeople()
             .then(data => {
@@ -18,9 +19,12 @@ export default function PeopleProvider({ children }) {
                 console.log(e)
                 setPeople(null)
             })
+            .finally(() => {
+                setLoading(false)
+            })
     }, [])
     return(
-        <People.Provider value={[people, setPeople]}>
+        <People.Provider value={[people, setPeople, loading, setLoading]}>
             {children}
         </People.Provider>
     )

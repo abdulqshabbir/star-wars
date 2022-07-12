@@ -25,11 +25,27 @@ export default function Header() {
 
 function SearchBar() {
     const [searchString, setSearchString] = useState("")
-    const [people, setPeople] = usePeople()
+    const [ , setPeople, , setLoading] = usePeople()
     const inputRef = useRef()
+
+    // focuses cursor onto input field when component mounts
     useEffect(() => inputRef.current.focus(), [])
 
+    function handleKeyPress(e) {
+        if (e.key === "Enter") {
+            findMatchingPeople()
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener("keypress", handleKeyPress)
+        return () => {
+            window.removeEventListener("keypress", handleKeyPress)
+        }
+    })
+
     function findMatchingPeople() {
+        setLoading(true)
         getPeople(searchString)
             .then(data => {
                 setPeople(data)
@@ -37,6 +53,10 @@ function SearchBar() {
             })
             .catch(e => {
                 console.log(e)
+                setPeople(null)
+            })
+            .finally(() => {
+                setLoading(false)
             })
     }
 

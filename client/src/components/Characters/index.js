@@ -7,8 +7,7 @@ import styles from "./characters.module.css"
 const { container } = styles
 
 export default function StarWarsCharacters() {
-    const [people, setPeople, loading, setLoading] = usePeople()
-    const [error, setError] = useState("")
+    const [people, setPeople, loading, setLoading, error, setError] = usePeople()
 
     useEffect(() => {
         getPeople()

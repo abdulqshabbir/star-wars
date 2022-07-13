@@ -4,6 +4,7 @@
 
 .container {
     margin: var(--vertical-margin) 0;
+    text-align: center;
 }
 
 .heroHeader {

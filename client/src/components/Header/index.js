@@ -49,7 +49,6 @@ function SearchBar() {
         getPeople(searchString)
             .then(data => {
                 setPeople(data)
-                console.log(data)
             })
             .catch(e => {
                 console.log(e)

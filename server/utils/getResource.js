@@ -9,7 +9,7 @@ export default function getResource(path, fields) {
         })
         .catch((e) => {
             console.log(e)
-            return null
+            return Promise.reject(null)
         })
 }
 

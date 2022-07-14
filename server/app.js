@@ -18,54 +18,6 @@ app.use(express.urlencoded({ extended: true }))
 
 export const BASE_URL = "https://swapi.dev/api"
 
-// GET route /planets/:id
-app.get("/api/planets/:id", (req, res) => {
-    const planetId = req.params.id
-
-    fetch(`${BASE_URL}/planets/${planetId}`)
-        .then(res => res.json())
-        .then(result => {
-            if (!("name" in result)) {
-                return res.status(400).json({
-                    error: "Please provide a valid planet id."
-                })
-            }
-            return res.status(200).json({
-                name: result.name
-            })
-        })
-        .catch(e => {
-            console.log(e)
-            return res.status(500).json({
-                error: "Internal Server Error."
-            })
-        })
-})
-
-// GET route /films/:id
-app.get("/api/films/:id", (req, res) => {
-    const filmId = req.params.id
-
-    fetch(`${BASE_URL}/films/${filmId}`)
-        .then(res => res.json())
-        .then(result => {
-            if (!("title" in result)) {
-                return res.status(400).json({
-                    error: "Please provide a valid film id."
-                })
-            }
-            return res.status(200).json({
-                title: result.title
-            })
-        })
-        .catch(e => {
-            console.log(e)
-            return res.status(500).json({
-                error: "Internal Server Error."
-            })
-        })
-})
-
 //GET route for /person/:id
 /*
     Note: the "name" search param in the route below is guaranteed to be the
@@ -85,9 +37,9 @@ app.get("/api/person/:name", (req, res) => {
     fetch(`${BASE_URL}/people/?search=${personName}`)
         .then(res => res.json())
         .then(async (data) => {
-            if (!("results" in data)) {
+            if (data.count !== 1) {
                 return res.status(400).json({
-                    error: "Please provide a valid person id."
+                    error: `Could not find a unique person with name ${personName}`
                 })
             }
             const person = data.results[0]
@@ -100,6 +52,7 @@ app.get("/api/person/:name", (req, res) => {
                 films: await getResources(person.films, ["title", "episode_id"]),
             })
         })
+
         .catch(e => {
             console.log(e)
             return res.status(500).json({

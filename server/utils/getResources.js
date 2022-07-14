@@ -12,7 +12,6 @@ export default function getResources(paths, fields) {
         })
         .then(dataArray => {
             const resources = createResourcesUsingFields(dataArray, fields)
-            console.log(resources)
             return resources
         }).catch(e => {
             console.log(e)

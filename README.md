@@ -45,16 +45,16 @@ Please ensure before running these steps that you have [npm](https://nodejs.org/
     ````
 2. Move into the server directory and install server dependencies
    ```sh
-    cd server
+    cd star-wars/server
     npm install
    ```
 3. Run the server
    ```sh
     npm run start
    ```
-4. Move into the client directory and install client dependencies
+4. Open a new terminal window and move into the client folder. Then install client dependencies
    ```sh
-    cd ../client
+    cd star-wars/client
     npm install
    ```
 5. Start the client React application

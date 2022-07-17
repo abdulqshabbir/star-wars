@@ -71,7 +71,7 @@ app.get("/api/people/:searchParams", (req, res) => {
         .then(res => res.json())
         .then(data => {
             if (data.count === 0) {
-                return res.status(400).json({ error: "No search results matching your criterion."})
+                return res.status(400).json({ error: "No search results matching your criterion.", count: 0, previous: null, next: null, results: []})
             }
             return res.status(200).json(data)
         })

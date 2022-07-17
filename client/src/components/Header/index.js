@@ -9,11 +9,16 @@ import styles from "./header.module.css"
 const { container, logoContainer, logoText, searchBarContainer, searchText, searchButton } = styles
 
 export default function Header() {
+    const [,,, setLoading] = usePeople()
     return (
         <header className={container}>
-            <Link to="/" style={{textDecoration: "none"}} className={logoContainer}>
-                <GiMagicPortal size="35px" />
-                <span className={logoText}>Star Wars Portal</span>
+            <Link
+                onClick={() => setLoading(true)}
+                to="/"
+                style={{textDecoration: "none"}}
+                className={logoContainer}>
+                    <GiMagicPortal size="35px" />
+                    <span className={logoText}>Star Wars Portal</span>
             </Link>
             <div className={searchBarContainer}>
                 <BsSearch size="25px"/>

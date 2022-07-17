@@ -38,7 +38,7 @@ Main User functionalities:
 
 The following list provides the instructions needed to run this project locally.
 
-Please ensure before running these steps that you have [npm](https://nodejs.org/en/download/) installed on your computer.
+Please ensure before running these steps that you have [node](https://nodejs.org/en/download/) installed on your computer.
 1. Clone the repo 
     ```sh
     git clone https://github.com/abdulqshabbir/star-wars.git
@@ -133,7 +133,7 @@ The tests use the supertest library to make HTTP requests and Jest to validate i
 - Instead of testing our API against hard-coded values of the SWAPI API we should instead make a 
 request to the SWAPI API 
 - Use async/await syntax for promises
-- Improve error handling on the front ends
+- Improve error handling on the front end
 - Add linting
 
 <!-- LICENSE -->

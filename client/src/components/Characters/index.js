@@ -2,9 +2,10 @@ import { useEffect, useState } from "react"
 import CharacterCard from "../CharacterCard"
 import getPeople from "../../services/getPeople"
 import { usePeople } from "../../context/People"
+import { ImSpinner8 } from "react-icons/im"
 
 import styles from "./characters.module.css"
-const { container } = styles
+const { container, spinnerContainer, rotate } = styles
 
 export default function StarWarsCharacters() {
     const [people, setPeople, loading, setLoading, error, setError] = usePeople()
@@ -24,7 +25,11 @@ export default function StarWarsCharacters() {
     }, [])
 
     if (loading || people === null) {
-        return "Loading data... hang on a sec..."
+        return (
+            <div className={spinnerContainer}>
+                <ImSpinner8 className={rotate} size="50px" fontWeight="100"/>
+            </div>
+        )
     }
 
     else if (error.length > 0) {

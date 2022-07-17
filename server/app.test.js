@@ -5,7 +5,7 @@ import { jest } from '@jest/globals'
 const testApp = supertest(app)
 
 describe("GET /person/:name", () => {
-    jest.setTimeout(20000)
+    jest.setTimeout(30000)
     test('GET /person/:name should return 200 with correct fields if a single name perfectly matches', function(done) {
         testApp 
             .get('/api/person/Luke Skywalker')

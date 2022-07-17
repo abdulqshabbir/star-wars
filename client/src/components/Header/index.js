@@ -1,7 +1,7 @@
 import { GiMagicPortal } from "react-icons/gi"
 import { BsSearch } from "react-icons/bs"
 import React, { useEffect, useRef, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { usePeople } from "../../context/People"
 import getPeople from "../../services/getPeople"
 
@@ -10,6 +10,7 @@ const { container, logoContainer, logoText, searchBarContainer, searchText, sear
 
 export default function Header() {
     const [,,, setLoading] = usePeople()
+    const location = useLocation()
     return (
         <header className={container}>
             <Link
@@ -20,10 +21,14 @@ export default function Header() {
                     <GiMagicPortal size="35px" />
                     <span className={logoText}>Star Wars Portal</span>
             </Link>
-            <div className={searchBarContainer}>
-                <BsSearch size="25px"/>
-                <SearchBar /> 
-            </div>
+            {
+                location.pathname.includes("characters") ?
+                <div></div> :
+                <div className={searchBarContainer}>
+                    <BsSearch size="25px"/>
+                    <SearchBar /> 
+                </div>
+            }
         </header>
     )
 }

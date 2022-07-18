@@ -7,7 +7,7 @@ export default function HeroText() {
             <h1 className={heroHeader}>The Star Wars portal.</h1>
             <p className={heroText}>
                 Learn about the details of your favorite Star Wars characters.
-                Cick any of the cards below to see more info!
+                Click any of the cards below to see more info!
             </p>
         </section>
     )

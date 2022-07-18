@@ -66,7 +66,16 @@ Please ensure before running these steps that you have [node](https://nodejs.org
 <br />
 
 ## Running Tests
-Move into the server directory and use `npm run test` to run Jest tests.
+Move into the server directory and run
+```sh
+npm run test
+```
+Note: you may need to run the command below on windows/linus if development dependencies do not get installed with `npm run install`.
+
+```sh
+npm install --only=dev
+npm run test
+```
 
 The tests use the supertest library to make HTTP requests and Jest to validate if the response from our API matches the expected response from the SWAPI API.
 
@@ -125,16 +134,13 @@ The tests use the supertest library to make HTTP requests and Jest to validate i
     - Since the `homeworld` and `films` fields provided by SWAPI are URLs I created some asynchronous helper functions `getResource` and `getResources` which use the URL to fetch the corresponding resource with the fields that the client requests.
 
 ## Improvements
-- Improve styling on Character page
-- Add images to Character cards
 - Speed up the application by adding a cache for the `getPeople` and `getPerson` functions which populate our front end with data. We can use the URL being passed to the fetch function as a unique key in our hashmap.
 - Use an id instead of a full name to uniquely identify characters in our /api/person/:name route
 - Use express.Router to create modular route handlers
 - Create tests for our React application
 - Lift up global CSS styles into a theme that can be reused throughout the application
 - Add tests for our server util functions `getResource` and `getResources`
-- Instead of testing our API against hard-coded values of the SWAPI API we should instead make a 
-request to the SWAPI API 
+- Instead of testing our API against hard-coded values of the SWAPI API we should instead make a request to the SWAPI API 
 - Use async/await syntax for promises
 - Improve error handling on the front end
 - Add linting

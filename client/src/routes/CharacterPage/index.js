@@ -5,7 +5,7 @@ import Header from "../../components/Header"
 import getPerson from "../../services/getPerson"
 
 import styles from "./character-page.module.css"
-const { header, text, listItem } = styles
+const { header, text, listItem, container } = styles
 
 export default function CharacterPage() {
     const params = useParams()
@@ -38,7 +38,7 @@ export default function CharacterPage() {
             <React.Fragment>
                 <Container>
                     <Header />
-                    <div>
+                    <div className={container}>
                         <h1 className={header}>{character.name}</h1>
                         <p className={text}>Gender: {character.gender}</p>
                         <p className={text}>Birth Year: {character.birthYear}</p>

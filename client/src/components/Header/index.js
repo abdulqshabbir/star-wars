@@ -16,7 +16,7 @@ export default function Header() {
             <Link
                 onClick={() => setLoading(true)}
                 to="/"
-                style={{textDecoration: "none"}}
+                style={{textDecoration: "none", color: "white"}}
                 className={logoContainer}>
                     <GiMagicPortal size="35px" />
                     <span className={logoText}>Star Wars Portal</span>

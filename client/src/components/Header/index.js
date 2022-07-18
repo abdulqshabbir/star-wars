@@ -11,10 +11,17 @@ const { container, logoContainer, logoText, searchBarContainer, searchText, sear
 export default function Header() {
     const [,,, setLoading] = usePeople()
     const location = useLocation()
+
+    function handleClick() {
+        if (location.pathname.includes("characters")) {
+            setLoading(true)
+        }
+    }
+
     return (
         <header className={container}>
             <Link
-                onClick={() => setLoading(true)}
+                onClick={() => handleClick()}
                 to="/"
                 style={{textDecoration: "none", color: "white"}}
                 className={logoContainer}>

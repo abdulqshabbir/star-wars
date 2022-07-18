@@ -38,7 +38,7 @@ export default function PreviousAndNextButtons() {
                 */
                 <div></div> :
                 <GrLinkPrevious
-                    size="80px"
+                    size="60px"
                     className={prevButton}
                     onClick={() => handleClick(false)}
                 />
@@ -48,8 +48,8 @@ export default function PreviousAndNextButtons() {
                 people.next === null ? 
                 <div></div> :
                 <GrLinkNext
-                    size="80px"
                     className={nextButton}
+                    size="60px"
                     onClick={() => handleClick(true)}
                 />
             }

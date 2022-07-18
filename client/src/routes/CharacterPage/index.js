@@ -5,7 +5,7 @@ import Header from "../../components/Header"
 import getPerson from "../../services/getPerson"
 
 import styles from "./character-page.module.css"
-const { header, text, listItem, container } = styles
+const { header, text, listItem, container, leftContainer, image } = styles
 
 export default function CharacterPage() {
     const params = useParams()
@@ -39,15 +39,18 @@ export default function CharacterPage() {
                 <Container>
                     <Header />
                     <div className={container}>
-                        <h1 className={header}>{character.name}</h1>
-                        <p className={text}>Gender: {character.gender}</p>
-                        <p className={text}>Birth Year: {character.birthYear}</p>
-                        <p className={text}>Eye Color: {character.eyeColor}</p>
-                        <p className={text}>Homeworld: {character.homeworld.name}</p>
-                        <p className={text}>{character.name} Appeared in the following films:</p>
-                        <ul>
-                            {character.films.map((film, idx) => <li className={listItem} key={idx}>{film.title}</li>)}
-                        </ul>
+                        <div className={leftContainer}>
+                            <h1 className={header}>{character.name}</h1>
+                            <p className={text}>Gender: {character.gender}</p>
+                            <p className={text}>Birth Year: {character.birthYear}</p>
+                            <p className={text}>Eye Color: {character.eyeColor}</p>
+                            <p className={text}>Homeworld: {character.homeworld.name}</p>
+                            <p className={text}>{character.name} Appeared in the following films:</p>
+                            <ul>
+                                {character.films.map((film, idx) => <li className={listItem} key={idx}>{film.title}</li>)}
+                            </ul>
+                        </div>
+                        <img className={image} src={`${process.env.PUBLIC_URL}/${character.name}.jpg`} alt="Sorry no image available" />
                     </div>
                 </Container>
             </React.Fragment>

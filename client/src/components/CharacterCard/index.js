@@ -3,7 +3,6 @@ import styles from "./character-card.module.css"
 const { container, text, image } = styles
 
 export default function CharacterCard({ name }) {
-                console.log(name)
     return (
         <Link to={`/characters/${name}`} style={{textDecoration: "none", color: 'white'}}>
             <div className={container}>

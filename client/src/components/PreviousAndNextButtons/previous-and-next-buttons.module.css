@@ -1,8 +1,17 @@
 .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    margin: 50px;
 }
 
 .prevButton, .nextButton {
     cursor: pointer;
+    background-color: gray;
+    border-radius: 50%;
+    margin: 0 50px;
+}
+
+.prevButton:hover, .nextButton:hover {
+    scale: 125%;
+    transition: all 0.1s ease-in-out;
 }

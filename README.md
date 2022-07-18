@@ -125,6 +125,9 @@ The tests use the supertest library to make HTTP requests and Jest to validate i
     - Since the `homeworld` and `films` fields provided by SWAPI are URLs I created some asynchronous helper functions `getResource` and `getResources` which use the URL to fetch the corresponding resource with the fields that the client requests.
 
 ## Improvements
+- Improve styling on Character page
+- Add images to Character cards
+- Speed up the application by adding a cache for the `getPeople` and `getPerson` functions which populate our front end with data. We can use the URL being passed to the fetch function as a unique key in our hashmap.
 - Use an id instead of a full name to uniquely identify characters in our /api/person/:name route
 - Use express.Router to create modular route handlers
 - Create tests for our React application

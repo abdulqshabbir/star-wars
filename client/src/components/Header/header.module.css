@@ -35,6 +35,7 @@
 .searchText{
     font-size: var(--base-font);
     background-color: rgb(32,36,44);
+    color: white;
     width: 90%;
     border: none;
     padding-left: 20px;

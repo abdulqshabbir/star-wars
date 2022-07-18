@@ -3,11 +3,17 @@
     margin: 10px;
     border-radius: 5px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 300px;
     width: 300px;
     cursor: pointer;
+}
+
+.image {
+    margin-top: 10px;
+    border-radius: 10px;
 }
 
 .container:hover {

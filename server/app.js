@@ -18,6 +18,9 @@ app.use(express.urlencoded({ extended: true }))
 
 export const BASE_URL = "https://swapi.dev/api"
 
+// set node environment to development
+process.env.NODE_ENV = "development"
+
 //GET route for /person/:id
 /*
     Note: the "name" search param in the route below is guaranteed to be the

@@ -5,7 +5,7 @@
     <img src="https://cdn.mos.cms.futurecdn.net/HoV9PTARj4sSSKHq8ScVFB-1024-80.jpg.webp" alt="Logo" width="300px">
   </a>
 
-  <h3 align="center">Star Wars Technical Documentation</h3>
+  <h3 align="center">Star Wars Portal</h3>
   <br />
 </div>
 
@@ -24,11 +24,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is a project that lets you learn more about your favourite Star Wars characters. It uses the SWAPI API to grab relevant information and present it to the user.
+Learn more about your favourite Star Wars characters! The Star Wars Portal uses the SWAPI API to grab relevant information about your favorite Star Wars characters.
 
 Main User functionalities:
 - Users can search for Star Wars characters by name
-- User can click a "person card" to learn more about a Star Wars character
+- Users can click a Star Wars character to learn more about them
 - If more than 10 characters match a search result, users can use the arrows at the bottom to move between the Star Wars characters 10 at a time. 
 
 <br />
@@ -133,15 +133,18 @@ The tests use the supertest library to make HTTP requests and Jest to validate i
     - Since the `homeworld` and `films` fields provided by SWAPI are URLs I created some asynchronous helper functions `getResource` and `getResources` which use the URL to fetch the corresponding resource with the fields that the client requests.
 
 ## Improvements
-- Speed up the application by adding a cache for the `getPeople` and `getPerson` functions which populate our front end with data. We can use the URL being passed to the fetch function as a unique key in our hashmap.
+- Add the ability to search for characters fom the `CharacterPage` similar to how it is possible on the `HomePage`
+- Add the ability to search for characters by other characteristics, such as thier homeworld planet
+- Speed up the application by adding a cache for the `getPeople` and `getPerson` functions which populate our front end with data. We can use the URL being passed to the fetch function as a unique key in our hashmap
 - Use an id instead of a full name to uniquely identify characters in our /api/person/:name route
-- Use express.Router to create modular route handlers
+- Use express.Router to create modular route handlers in our back end
 - Create tests for our React application
 - Lift up global CSS styles into a theme that can be reused throughout the application
 - Add tests for our server util functions `getResource` and `getResources`
-- Instead of testing our API against hard-coded values of the SWAPI API we should instead make a request to the SWAPI API 
+- Instead of testing our API against hard-coded values of the SWAPI API we should instead make a request to the SWAPI API to ensure that tests do not (incorrectly) fail if the SWAPI API changes
 - Use async/await syntax for promises
 - Improve error handling on the front end
+- Use consistent variable naming: there are several occurences where the words "people" and "characters" are used interchangeably. It would be better to have a single variable name we use consistently throughout.
 - Add linting
 
 <!-- LICENSE -->

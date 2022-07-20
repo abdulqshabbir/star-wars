@@ -48,6 +48,12 @@ Please ensure before running these steps that you have [node](https://nodejs.org
     cd star-wars/server
     npm install
    ```
+    Note: on windows/linux you will need to run the command below if development dependencies do not get installed with `npm install`.
+
+    ```sh
+      npm install --only=dev
+    ```
+
 3. Run the server
    ```sh
     npm run start
@@ -70,13 +76,6 @@ Move into the server directory and run
 ```sh
 npm run test
 ```
-Note: you may need to run the command below on windows/linus if development dependencies do not get installed with `npm run install`.
-
-```sh
-npm install --only=dev
-npm run test
-```
-
 The tests use the supertest library to make HTTP requests and Jest to validate if the response from our API matches the expected response from the SWAPI API.
 
 <br />

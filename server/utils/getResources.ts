@@ -20,10 +20,10 @@ export default function getResources(paths, fields) {
 }
 
 function createResourcesUsingFields(dataArray, fields) {
-    const resources = []
+    const resources: any[] = []
 
     for (let data of dataArray) {
-        const resource = fields.reduce((acc, field) => {
+        const resource = fields.reduce((acc: any, field: any) => {
             if (field in data) {
                 acc[field] = data[field]
                 return acc

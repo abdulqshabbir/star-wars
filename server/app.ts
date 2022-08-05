@@ -2,8 +2,8 @@
 import express from 'express'
 import cors from 'cors'
 import fetch from 'node-fetch'
-import getResource from './utils/getResource.js'
-import getResources from './utils/getResources.js'
+import getResource from './utils/getResource'
+import getResources from './utils/getResources'
 
 const app = express()
 
@@ -39,7 +39,7 @@ app.get("/api/person/:name", (req, res) => {
 
     fetch(`${BASE_URL}/people/?search=${personName}`)
         .then(res => res.json())
-        .then(async (data) => {
+        .then(async (data: any) => {
             if (data.count !== 1) {
                 return res.status(400).json({
                     error: `Could not find a unique person with name ${personName}`
@@ -72,7 +72,7 @@ app.get("/api/people/:searchParams", (req, res) => {
 
     fetch(`${BASE_URL}/people?search=${name}&page=${pageNumber}`)
         .then(res => res.json())
-        .then(data => {
+        .then((data: any) => {
             if (data.count === 0) {
                 return res.status(400).json({ error: "No search results matching your criterion.", count: 0, previous: null, next: null, results: []})
             }
